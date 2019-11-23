@@ -2,6 +2,8 @@ import { css } from '@emotion/core';
 import classNames from 'classnames';
 import { useCallback } from 'react';
 
+const previewFiles = ['png', 'jpg'];
+
 interface Props {
     name: string;
     selected?: boolean;
@@ -37,6 +39,12 @@ const style = css`
     .file__icon {
         margin-bottom: 6px;
         font-size: 40px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            vertical-align: top;
+        }
     }
 
     .file__title {
@@ -65,12 +73,25 @@ const File: React.FC<Props> = props => {
         [onClick]
     );
 
+    const extension = getExtension(props.name);
+    const showPreview = Boolean(
+        extension && -1 !== previewFiles.indexOf(extension)
+    );
+
     return (
         <button css={style} onClick={handleClick} className={className}>
             <div className="file__icon">
-                <em
-                    className={`fiv-sqo fiv-icon-${getExtension(props.name)}`}
-                />
+                {showPreview ? (
+                    <img
+                        src={`https://saurer.blob.core.windows.net/default/${props.name}`}
+                    />
+                ) : (
+                    <em
+                        className={`fiv-sqo fiv-icon-${getExtension(
+                            props.name
+                        )}`}
+                    />
+                )}
             </div>
             <div className="file__title">{props.name}</div>
         </button>

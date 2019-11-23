@@ -23,6 +23,7 @@ module.exports = {
         return config;
     },
     env: {
-        BLOB_STORAGE_SERVER: process.env.BLOB_STORAGE_SERVER
+        BLOB_STORAGE_SERVER: process.env.BLOB_STORAGE_SERVER,
+        BLOB_STORAGE_DOWNLOAD: process.env.BLOB_STORAGE_DOWNLOAD
     }
 };

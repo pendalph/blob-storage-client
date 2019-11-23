@@ -3,7 +3,8 @@
     "builds": [{ "src": "package.json", "use": "@now/next" }],
     "build": {
         "env": {
-            "BLOB_STORAGE_SERVER": "https://blob-storage-server.now.sh"
+            "BLOB_STORAGE_SERVER": "https://blob-storage-server.now.sh",
+            "BLOB_STORAGE_DOWNLOAD": "https://saurer.blob.core.windows.net/default"
         }
     }
 }
