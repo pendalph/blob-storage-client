@@ -1,9 +1,12 @@
-import { types, flow } from 'mobx-state-tree';
+import { types, castToSnapshot } from 'mobx-state-tree';
+import File from 'models/File';
+import { ResponseType } from 'types';
 
 export default types
     .model({
         storageKey: types.maybe(types.string),
-        pending: types.optional(types.boolean, false)
+        pending: types.optional(types.boolean, false),
+        files: types.array(File)
     })
     .views(self => ({
         get isAuthenticated() {
@@ -11,18 +14,39 @@ export default types
         }
     }))
     .actions(self => ({
-        connect: flow(function*(storageKey: string) {
+        async connect(storageKey: string) {
             self.pending = true;
-            yield new Promise(resolve => setTimeout(resolve, 3000));
-            if (self.storageKey) {
-                self.storageKey = undefined;
-            } else {
+            const result = await this.refresh(storageKey);
+
+            if (result) {
                 self.storageKey = storageKey;
             }
+
             self.pending = false;
-        }),
+        },
 
         disconnect() {
+            self.files.clear();
             self.storageKey = undefined;
+        },
+
+        async refresh(storageKey: string) {
+            const response = await fetch(
+                'https://blob-storage-server.saurer.now.sh/api/enumerate',
+                {
+                    method: 'post',
+                    body: new URLSearchParams({
+                        storageKey: storageKey
+                    })
+                }
+            );
+            const json: ResponseType = await response.json();
+
+            if (json.success) {
+                self.files = castToSnapshot(json.data);
+                return true;
+            } else {
+                return false;
+            }
         }
     }));

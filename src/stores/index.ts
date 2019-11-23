@@ -1,3 +1,7 @@
 import RootStore from './RootStore';
+import { unprotect } from 'mobx-state-tree';
 
-export default RootStore.create();
+const rootStore = RootStore.create();
+unprotect(rootStore);
+
+export default rootStore;

@@ -7,16 +7,6 @@ import FileBrowser from 'components/FileBrowser';
 import StoreContext from 'components/StoreContext';
 import Hint from 'components/Hint';
 
-const files = [
-    {
-        name: 'Test file.docx',
-        creationTime: new Date(),
-        lastModified: new Date(),
-        etag: '',
-        contentLength: 1024
-    }
-];
-
 const Index: React.FC = () => {
     const storeContext = useContext(StoreContext);
 
@@ -30,7 +20,7 @@ const Index: React.FC = () => {
             }
         >
             {storeContext.isAuthenticated ? (
-                <FileBrowser files={files as any} />
+                <FileBrowser files={storeContext.files} />
             ) : (
                 <Hint>Please connect to the server</Hint>
             )}
