@@ -11,7 +11,9 @@
         "build": "next build src && next export src -o build",
         "start": "next start src",
         "export": "yarn build && next export",
-        "test": "jest"
+        "test": "jest",
+        "now-build": "next build",
+        "serve": "now -A now.json"
     },
     "dependencies": {},
     "devDependencies": {

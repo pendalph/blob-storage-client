@@ -1,6 +1,7 @@
 import { types, castToSnapshot } from 'mobx-state-tree';
 import File from 'models/File';
 import { ResponseType } from 'types';
+import resolveUrl from 'lib/resolveUrl';
 
 export default types
     .model({
@@ -32,7 +33,9 @@ export default types
 
         async refresh(storageKey: string) {
             const response = await fetch(
-                'https://blob-storage-server.saurer.now.sh/api/enumerate',
+                resolveUrl({
+                    tokens: ['/api/enumerate']
+                }),
                 {
                     method: 'post',
                     body: new URLSearchParams({

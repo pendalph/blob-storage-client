@@ -1,4 +1,5 @@
 module.exports = {
+    target: 'serverless',
     webpack: config => {
         config.resolve.modules = [__dirname, ...config.resolve.modules];
 
@@ -20,5 +21,8 @@ module.exports = {
         });
 
         return config;
+    },
+    env: {
+        BLOB_STORAGE_SERVER: process.env.BLOB_STORAGE_SERVER
     }
 };

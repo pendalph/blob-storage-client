@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "builds": [{ "src": "package.json", "use": "@now/next" }],
+    "build": {
+        "env": {
+            "BLOB_STORAGE_SERVER": "https://blob-storage-server.now.sh"
+        }
+    }
+}
