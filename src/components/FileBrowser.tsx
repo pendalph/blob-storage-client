@@ -1,10 +1,10 @@
 import { css } from '@emotion/core';
-import File from './File';
 import Button from './Button';
 import { FileType } from '../types';
 import { useState, useCallback, useContext } from 'react';
 import Hint from './Hint';
 import FileInfo from './FileInfo';
+import FilesList from './FilesList';
 import StoreContext from './StoreContext';
 import React from 'react';
 import { useObserver } from 'mobx-react-lite';
@@ -57,16 +57,12 @@ const FileBrowser: React.FC<Props> = props => {
 
     return useObserver(() => (
         <div css={style}>
-            <div className="file-browser__list" onClick={handleDeselect}>
-                {props.files.map(file => (
-                    <File
-                        key={file.name}
-                        name={file.name}
-                        selected={file.name === selectedFile?.name}
-                        onClick={() => setSelectedFile(file)}
-                    />
-                ))}
-            </div>
+            <FilesList
+                files={props.files}
+                handleDeselect={handleDeselect}
+                selectedFile={selectedFile}
+                onSelect={setSelectedFile}
+            />
             <div className="file-browser__aside">
                 <input
                     type="file"
