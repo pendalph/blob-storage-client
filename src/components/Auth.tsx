@@ -32,6 +32,7 @@ const Auth: React.FC = () => {
                 <Input
                     placeholder="Please enter your storage key here..."
                     value={key}
+                    type="password"
                     disabled={
                         storeContext.pending || storeContext.isAuthenticated
                     }

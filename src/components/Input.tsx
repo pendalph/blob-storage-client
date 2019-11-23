@@ -4,6 +4,7 @@ interface Props {
     disabled?: boolean;
     placeholder?: string;
     value?: string;
+    type: string;
     onChange?: (value: string) => void;
 }
 
@@ -33,7 +34,7 @@ const style = css`
 const Input: React.FC<Props> = props => (
     <input
         css={style}
-        type="password"
+        type={props.type}
         disabled={props.disabled}
         placeholder={props.placeholder}
         value={props.value}
