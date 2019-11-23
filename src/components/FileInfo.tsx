@@ -23,10 +23,10 @@ const FileInfo: React.FC<Props> = props => (
         <dd>{props.file.name}</dd>
 
         <dt>Date created</dt>
-        <dd>{props.file.creationTime.toString()}</dd>
+        <dd>{props.file.creationTime}</dd>
 
         <dt>Date modified</dt>
-        <dd>{props.file.lastModified.toString()}</dd>
+        <dd>{props.file.lastModified}</dd>
 
         <dt>Size</dt>
         <dd>{props.file.contentLength} byte(s)</dd>
