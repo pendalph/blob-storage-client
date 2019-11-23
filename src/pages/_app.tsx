@@ -1,7 +1,7 @@
 import NextApp from 'next/app';
 import Head from 'next/head';
-import StoreContext from 'components/StoreContext';
-import store from 'stores';
+import StoreContext from '../components/StoreContext';
+import store from '../stores';
 
 class App extends NextApp {
     render() {

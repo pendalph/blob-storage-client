@@ -1,4 +1,4 @@
-import { FileType } from 'types';
+import { FileType } from '../types';
 import { css } from '@emotion/core';
 
 interface Props {

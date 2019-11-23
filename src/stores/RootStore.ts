@@ -1,7 +1,7 @@
 import { types, castToSnapshot } from 'mobx-state-tree';
-import File from 'models/File';
-import { ResponseType } from 'types';
-import resolveUrl from 'lib/resolveUrl';
+import File from '../models/File';
+import { ResponseType } from '../types';
+import resolveUrl from '../lib/resolveUrl';
 
 export default types
     .model({

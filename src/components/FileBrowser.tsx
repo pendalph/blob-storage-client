@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
 import File from './File';
 import Button from './Button';
-import { FileType } from 'types';
+import { FileType } from '../types';
 import { useState, useCallback } from 'react';
 import Hint from './Hint';
 import FileInfo from './FileInfo';
