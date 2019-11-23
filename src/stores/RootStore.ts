@@ -1,7 +1,8 @@
 import { types, castToSnapshot } from 'mobx-state-tree';
 import File from '../models/File';
-import { ResponseType } from '../types';
+import { ResponseType, FileType } from '../types';
 import resolveUrl from '../lib/resolveUrl';
+import { readBinaryFile } from '../lib/io';
 
 export default types
     .model({
@@ -39,7 +40,7 @@ export default types
                 {
                     method: 'post',
                     body: new URLSearchParams({
-                        storageKey: storageKey
+                        storageKey
                     })
                 }
             );
@@ -51,5 +52,31 @@ export default types
             } else {
                 return false;
             }
+        },
+
+        async upload(file: File) {
+            const body = await readBinaryFile(file);
+            const [, data] = body.split('base64,');
+
+            const response = await fetch(
+                resolveUrl({
+                    tokens: ['/api/put']
+                }),
+                {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        storageKey: self.storageKey!,
+                        name: file.name,
+                        data
+                    })
+                }
+            );
+            const json: ResponseType<FileType> = await response.json();
+
+            if (json.success) {
+                self.files.push(json.data);
+            }
+
+            return json;
         }
     }));

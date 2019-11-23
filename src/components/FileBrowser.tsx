@@ -2,9 +2,12 @@ import { css } from '@emotion/core';
 import File from './File';
 import Button from './Button';
 import { FileType } from '../types';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import Hint from './Hint';
 import FileInfo from './FileInfo';
+import StoreContext from './StoreContext';
+import React from 'react';
+import { useObserver } from 'mobx-react-lite';
 
 interface Props {
     files: FileType[];
@@ -36,13 +39,23 @@ const style = css`
 `;
 
 const FileBrowser: React.FC<Props> = props => {
+    const storeContext = useContext(StoreContext);
     const [selectedFile, setSelectedFile] = useState<FileType | null>(null);
+    const inputRef = React.createRef<HTMLInputElement>();
 
     const handleDeselect = useCallback(() => {
         setSelectedFile(null);
     }, [setSelectedFile]);
 
-    return (
+    const handleUpload = () => inputRef.current?.click();
+
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
+        if (e.target.files?.[0]) {
+            storeContext.upload(e.target.files[0]);
+        }
+    };
+
+    return useObserver(() => (
         <div css={style}>
             <div className="file-browser__list" onClick={handleDeselect}>
                 {props.files.map(file => (
@@ -55,7 +68,13 @@ const FileBrowser: React.FC<Props> = props => {
                 ))}
             </div>
             <div className="file-browser__aside">
-                <Button>Upload</Button>
+                <input
+                    type="file"
+                    ref={inputRef}
+                    onChange={handleChange}
+                    style={{ position: 'absolute', top: -50000, left: -50000 }}
+                />
+                <Button onClick={handleUpload}>Upload</Button>
                 <div className="file-browser__aside__info">
                     {selectedFile ? (
                         <FileInfo file={selectedFile} />
@@ -65,7 +84,7 @@ const FileBrowser: React.FC<Props> = props => {
                 </div>
             </div>
         </div>
-    );
+    ));
 };
 
 export default FileBrowser;
