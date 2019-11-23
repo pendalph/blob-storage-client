@@ -5,10 +5,10 @@ module.exports = {
     testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     collectCoverage: true,
-    moduleDirectories: ['node_modules', 'src/app'],
+    moduleDirectories: ['node_modules', 'src'],
     globals: {
         'ts-jest': {
-            tsConfig: 'src/app/tsconfig.json'
+            tsConfig: 'src/tsconfig.json'
         }
     }
 };

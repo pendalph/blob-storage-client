@@ -9,10 +9,19 @@
                         "sourceMap": true
                     }
                 ]
+            ],
+            "plugins": [
+                "@babel/plugin-proposal-optional-chaining"
             ]
         },
         "production": {
-            "presets": ["next/babel", "@emotion/babel-preset-css-prop"]
+            "presets": [
+                "next/babel",
+                "@emotion/babel-preset-css-prop"
+            ],
+            "plugins": [
+                "@babel/plugin-proposal-optional-chaining"
+            ]
         },
         "test": {
             "presets": [
@@ -25,6 +34,9 @@
                     }
                 ],
                 "@emotion/babel-preset-css-prop"
+            ],
+            "plugins": [
+                "@babel/plugin-proposal-optional-chaining"
             ]
         }
     }

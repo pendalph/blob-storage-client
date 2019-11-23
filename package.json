@@ -1,49 +1,31 @@
 {
-    "name": "react-app-template",
-    "version": "3.2.0",
-    "main": "./src/electron/index.js",
+    "name": "blob-storage-client",
+    "version": "1.0.0",
     "license": "MIT",
     "author": {
         "name": "Saurer",
-        "url": "https://github.com/Saurer"
+        "url": "https://github.com/Saurer/blob-storage-client"
     },
     "scripts": {
-        "dev": "next src/app",
-        "build": "next build src/app && next export src/app -o build",
-        "start": "next start src/app",
+        "dev": "next src",
+        "build": "next build src && next export src -o build",
+        "start": "next start src",
         "export": "yarn build && next export",
-        "start-desktop": "electron .",
-        "package": "yarn run build && build --dir",
-        "release": "yarn run build && build",
         "test": "jest"
     },
-    "build": {
-        "asar": true,
-        "directories": {
-            "output": "releases"
-        },
-        "files": [
-            "./src/electron/**/*",
-            {
-                "from": "build",
-                "to": "src/app/out"
-            }
-        ]
-    },
-    "dependencies": {
-        "electron-is-dev": "^1.1.0",
-        "electron-next": "^3.1.5"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@babel/core": "^7.7.2",
+        "@babel/plugin-proposal-optional-chaining": "^7.7.4",
         "@emotion/babel-preset-css-prop": "^10.0.23",
         "@emotion/core": "^10.0.22",
+        "@types/classnames": "^2.2.9",
         "@types/jest": "^24.0.22",
         "@types/react": "^16.9.11",
+        "@types/react-loader-spinner": "^3.1.0",
         "@typescript-eslint/eslint-plugin": "^2.7.0",
         "@typescript-eslint/parser": "^2.7.0",
-        "electron": "^7.1.1",
-        "electron-builder": "^22.1.0",
+        "classnames": "^2.2.6",
         "enzyme": "^3.10.0",
         "enzyme-adapter-react-16": "^1.15.1",
         "eslint": "^6.6.0",
@@ -60,6 +42,7 @@
         "prettier": "^1.19.1",
         "react": "^16.11.0",
         "react-dom": "^16.11.0",
+        "react-loader-spinner": "^3.1.5",
         "ts-jest": "^24.1.0",
         "typescript": "^3.7.2"
     }

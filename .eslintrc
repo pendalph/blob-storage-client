@@ -8,7 +8,12 @@
     "parserOptions": {
         "sourceType": "module"
     },
-    "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "prettier",
+        "react-hooks"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
@@ -32,7 +37,9 @@
         "guard-for-in": "warn",
         "no-bitwise": "warn",
         "no-caller": "warn",
-        "no-console": ["warn"],
+        "no-console": [
+            "warn"
+        ],
         "no-debugger": "warn",
         "no-empty": "warn",
         "no-empty-function": "warn",
@@ -61,7 +68,10 @@
         ],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "eqeqeq": ["warn", "always"],
-        "camelcase": ["warn"]
+        "eqeqeq": [
+            "warn",
+            "always"
+        ],
+        "camelcase": "off"
     }
 }
