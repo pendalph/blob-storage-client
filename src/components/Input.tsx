@@ -18,6 +18,7 @@ const style = css`
     color: #333;
     height: 34px;
     transition: border-color ease-in-out 0.2s;
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
 
     &:disabled {
         background: #e0e0e0;
